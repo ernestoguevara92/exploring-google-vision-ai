@@ -41,10 +41,16 @@
 
     <video autoplay="true" id="videoElement"></video>
     <button id="vision_button">Analyze</button>
-    <button id="text_detection">Detect Text</button>
+    <div id="use-type">
+        <input type="radio" id="label-detection" name="type" value="LABEL_DETECTION"> Label Detections
+        <input type="radio" id="text-detection" name="type" value="TEXT_DETECTION"> Text Detection
+    </div>
+
     <div id='results'></div>
     
     <script>
+
+        var useType = document.querySelector('input[name="type"]:checked').value;
 
       // Access camera 
       var video = document.querySelector("#videoElement");      
@@ -82,7 +88,7 @@
 		  requests: [
 		      {
 			  features: {
-			      type: 'LABEL_DETECTION'
+			      type: useType
 			  },
 			  image: {
 			      // have to extract only the image data from dataURL
